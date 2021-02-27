@@ -7,6 +7,7 @@ module.exports = {
       user : process.env.DB_USER,
       database : process.env.DB_NAME,
       port: process.env.DB_PORT,
+      password: process.env.DB_PASSWORD,
       charset: 'utf8'
     },
     migrations: {
