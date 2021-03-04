@@ -1,15 +1,9 @@
-const express = require('express');
-const router = express.Router();
 const {getAll, getOne, createOne, patchOne, deleteOne} = require('./index.controller');
 
-router.get('/', getAll);
-
-router.get('/:id', getOne);
-
-router.post('/', createOne);
-
-router.patch('/:id', patchOne);
-
-router.delete('/:id', deleteOne);
-
-module.exports = router;
+module.exports = [
+  { prefix: 'users', method: 'get', path: '/', handlers: [getAll] },
+  { prefix: 'users', method: 'get', path: '/:id', handlers: [getOne] },
+  { prefix: 'users', method: 'post', path: '/', handlers: [createOne] },
+  { prefix: 'users', method: 'patch', path: '/:id', handlers: [patchOne] },
+  { prefix: 'users', method: 'delete', path: '/:id', handlers: [deleteOne] },
+];

@@ -20,7 +20,6 @@ const handleError = (err, res) => {
     });
   } 
   // Database exception
-  console.log(err);
   return res.status(500).json({
     status: 'error',
     statusCode: 500,

@@ -1,10 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const {register, login} = require('./index.controller');
 
-router.get('/', (req, res, next) => {
-  return res.json({
-    shit: 'shit'
-  });
-});
-
-module.exports = router;
+module.exports = [
+  { prefix: 'auth', method: 'post', path: `/register`, handlers: [register] },
+  { prefix: 'auth', method: 'patch', path: `/login`, handlers: [login] },
+];

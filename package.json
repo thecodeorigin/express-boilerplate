@@ -7,7 +7,9 @@
     "dev": "set NODE_ENV=development && nodemon ./app.js",
     "migrate:make": "knex migrate:make --knexfile src/config/knexfile.js",
     "migrate:latest": "knex migrate:latest --knexfile src/config/knexfile.js",
-    "migrate:rollback": "knex migrate:rollback --knexfile src/config/knexfile.js"
+    "migrate:rollback": "knex migrate:rollback --knexfile src/config/knexfile.js",
+    "seed:make": "knex seed:make --knexfile src/config/knexfile.js",
+    "seed:run": "knex seed:run --knexfile src/config/knexfile.js"
   },
   "dependencies": {
     "chalk": "^4.1.0",
@@ -15,7 +17,9 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "faker": "^5.4.0",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.18",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
