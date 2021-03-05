@@ -21,16 +21,7 @@ jobs:
       - checkout
       - run:
           name: Deploy over SSH
-          command: ssh $USER@$IP
-      - run:
-          name: Redirect to directory
-          command: cd /home/express-mysql-boilerplate
-      - run:
-          name: Pull the latest build
-          command: git pull
-      - run:
-          name: Restart Web Server
-          command: pm2 restart express_api 
+          command: ssh $USER@$IP "cd /home/express-mysql-boilerplate; git pull; pm2 restart express_api";
 
 workflows:
   version: 2
