@@ -21,7 +21,7 @@ jobs:
       - checkout
       - run:
           name: Deploy over SSH
-          command: ssh $USER@$IP;
+          command: ssh $USER@$IP
       - run:
           name: Redirect to directory
           command: cd /home/express-mysql-boilerplate
