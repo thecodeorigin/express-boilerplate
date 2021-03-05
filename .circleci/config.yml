@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Update npm
-          command: 'sudo npm install -g yarn'
+          command: 'rm /usr/local/bin/yarn && sudo npm install -g yarn'
       - restore_cache:
           key: dependency-cache-{{checksum "yarn.json"}}
       - run:
