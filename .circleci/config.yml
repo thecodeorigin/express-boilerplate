@@ -1,7 +1,6 @@
 version: 2.17
 jobs:
   build:
-    working_directory: /home/express-api-base
     docker:
       - image: circleci/node:8.11.1
     steps:
