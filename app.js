@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const http = require('http');
 const chalk = require('chalk');
 const router = require('./src/app.router');
 const { handleError } = require('./src/common/helpers/errorHandler');
@@ -37,9 +36,9 @@ app.use(function(err, req, res, next) {
 
 // Initialize ExpressJS app
 app.set('port', process.env.PORT || 3000);
-app.listen(app.get('port'), () => {
-  console.log(`${chalk.green('✓')} App is running at http://localhost:${app.get('port')} in ${app.get('env')}mode`);
+const server = app.listen(app.get('port'), () => {
+  console.log(`${chalk.green('✓')} App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);
 	console.log('Press CTRL-C to stop\n');
 });
 // Export app instance
-module.exports = app;
+module.exports = server;
