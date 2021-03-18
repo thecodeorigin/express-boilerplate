@@ -13,6 +13,7 @@
     "test": "jest --coverage tests"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "chalk": "^4.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
