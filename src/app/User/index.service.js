@@ -8,8 +8,8 @@ const getOneById = (id) => {
   return knex('users').where({ id }).first('*');
 };
 
-const createOne = async (email, name) => {
-  return knex('users').insert({ email, name });
+const createOne = async (email, name, password) => {
+  return knex('users').insert({ email, name, password });
 };
 
 const patchOne = async (id, email, name) => {

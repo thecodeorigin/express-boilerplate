@@ -17,7 +17,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // Router configuration
 router.forEach(route => {
-  app[route.method](`/v1/${route.prefix.replace(/\//g, '')}/${route.path.replace(/\//g, '')}`, ...route.handlers);
+  console.log(`${chalk.green('✓')} Route: ${chalk.blue(route.path)} configured and setup.`);
+  app[route.method](`/v1${route.path}`, ...route.handlers);
 });
 
 // 404 error handler
@@ -37,7 +38,7 @@ app.use(function(err, req, res, next) {
 // Initialize ExpressJS app
 app.set('port', process.env.PORT || 3000);
 const server = app.listen(app.get('port'), () => {
-  console.log(`${chalk.green('✓')} App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);
+  console.log(`${chalk.green('✓')} App is running at http://localhost:${app.get('port')} in ${chalk.yellow(app.get('env'))}mode`);
 	console.log('Press CTRL-C to stop\n');
 });
 // Export app instance
