@@ -1,3 +1,5 @@
+const { UNEXPECTED_EXCEPTION } = require("../../constants/httpMessage");
+
 class HTTPException extends Error {
   /**
    * @param {*} statusCode : The error status code 
@@ -23,7 +25,7 @@ const handleError = (err, res) => {
   return res.status(500).json({
     status: 'error',
     statusCode: 500,
-    message: 'An unexpected error has occurred. Please try again or contact the admin',
+    message: UNEXPECTED_EXCEPTION,
   });
 };
 

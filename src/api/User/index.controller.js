@@ -1,6 +1,6 @@
 const { HTTPException } = require('../../common/helpers/errorHandler');
 const userService = require('./index.service');
-const msg = require('../../constants/httpMessage');
+const { USER_NOT_FOUND, EMAIL_EXISTS} = require('../../constants/httpMessage');
 
 const getAll = async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ const getOne = async (req, res, next) => {
     const user = await userService.getOneById(req.params.id);
     // Check if this user exists
     if(!user) {
-      throw new HTTPException(404, msg.USER_NOT_FOUND);
+      throw new HTTPException(404, USER_NOT_FOUND);
     }
     return res.json({
       status: 'success',
@@ -38,7 +38,7 @@ const createOne = async (req, res, next) => {
     // Check if this email already exists
     const user = await userService.getOneByEmail(email);
     if(user) {
-      throw new HTTPException(400, msg.EMAIL_EXISTS);
+      throw new HTTPException(400, EMAIL_EXISTS);
     }
     await userService.createOne(email, name);
     return res.status(201).json({
@@ -57,7 +57,7 @@ const patchOne = async (req, res, next) => {
     const user = await userService.getOneByEmail(email);
     
     if(user && user.id != id) {
-      throw new HTTPException(400, msg.EMAIL_EXISTS);
+      throw new HTTPException(400, EMAIL_EXISTS);
     }
     await userService.patchOne(id, email, name);
     return res.status(200).json({
@@ -81,7 +81,7 @@ const deleteOne = async (req, res,next) => {
     return res.status(400).json({
       status: 'fail',
       statusCode: 400,
-      message: msg.USER_NOT_FOUND,
+      message: USER_NOT_FOUND,
     });
   } catch(err) {
     return next(err);
