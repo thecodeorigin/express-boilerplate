@@ -4,7 +4,6 @@ const msg = require('../../constants/httpMessage');
 
 const getAll = async (req, res, next) => {
   try {
-    console.log(req.user);
     const users = await userService.getAll();
     return res.status(200).json({
       status: 'success',
