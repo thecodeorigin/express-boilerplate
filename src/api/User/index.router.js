@@ -1,3 +1,4 @@
+const { authentication } = require('../../common/guards/authentication');
 const { routerGroup } = require('../../common/helpers/routerGroup');
 const {getAll, getOne, createOne, patchOne, deleteOne} = require('./index.controller');
 
@@ -9,7 +10,7 @@ module.exports = routerGroup({
   { 
     method: 'get',
     path: '/',
-    handlers: [getAll] 
+    handlers: [authentication, getAll] 
   },
   {
     method: 'get',

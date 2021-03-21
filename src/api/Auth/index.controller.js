@@ -39,7 +39,6 @@ const register = async (req, res, next) => {
       email: req.body.email,
       name: req.body.name,
       password,
-      role_id: 4,
     });
     const data = await userService.getOneById(id);
     return res.json({
