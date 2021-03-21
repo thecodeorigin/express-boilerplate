@@ -10,6 +10,7 @@
     "migrate:rollback": "knex migrate:rollback --knexfile src/config/knexfile.js",
     "seed:make": "knex seed:make --knexfile src/config/knexfile.js",
     "seed:run": "knex seed:run --knexfile src/config/knexfile.js",
+    "db:reset": "yarn migrate:rollback && yarn migrate:latest && yarn seed:run",
     "test": "jest --coverage tests"
   },
   "dependencies": {

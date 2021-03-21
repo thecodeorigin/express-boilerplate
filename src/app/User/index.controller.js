@@ -1,6 +1,6 @@
 const { HTTPException } = require('../../common/helpers/errorHandler');
 const userService = require('./index.service');
-const msg = require('../../common/json/httpMessage.json');
+const msg = require('../../constants/httpMessage');
 
 const getAll = async (req, res, next) => {
   try {

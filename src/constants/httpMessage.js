@@ -1,4 +1,4 @@
-{
+module.exports = {
   "USER_NOT_FOUND": "User not found",
   "EMAIL_EXISTS" : "User with that email already exists"
 }
