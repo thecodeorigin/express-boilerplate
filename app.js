@@ -17,7 +17,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // Router configuration
 router.forEach(route => {
-  console.log(`${chalk.green('✓')} Route: ${chalk.blue(route.path)} configured and setup.`);
+  if(app.get('env') != 'test') {    
+    console.log(`${chalk.green('✓')} ${chalk.bold.blue(route.method.toUpperCase())}: ${chalk.blue(route.path)} configured and setup.`);
+  }
   app[route.method](`/v1${route.path}`, ...route.handlers);
 });
 
@@ -38,8 +40,10 @@ app.use(function(err, req, res, next) {
 // Initialize ExpressJS app
 app.set('port', process.env.PORT || 3000);
 const server = app.listen(app.get('port'), () => {
-  console.log(`${chalk.green('✓')} App is running at http://localhost:${app.get('port')} in ${chalk.yellow(app.get('env'))}mode`);
-	console.log('Press CTRL-C to stop\n');
+  if(app.get('env') != 'test') {
+    console.log(`${chalk.green('✓')} App is running at http://localhost:${app.get('port')} in ${chalk.yellow(app.get('env'))}mode`);
+    console.log('Press CTRL-C to stop\n');
+  }
 });
 // Export app instance
 module.exports = server;
