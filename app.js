@@ -4,7 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const chalk = require('chalk');
-const router = require('./src/app.router');
+const router = require('./src/api/router');
 const { handleError } = require('./src/common/helpers/errorHandler');
 // ExpressJS application
 const app = express();
