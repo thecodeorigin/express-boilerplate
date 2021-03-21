@@ -1,7 +1,7 @@
 const { authentication } = require('../../common/guards/authentication');
 const { routerGroup } = require('../../common/helpers/routerGroup');
 const {getAll, getOne, createOne, patchOne, deleteOne} = require('./index.controller');
-
+const {isNotEmpty, isEmail} = require('../../common/filters/validation');
 module.exports = routerGroup({
   name: 'users',
   prefix: '/users',
@@ -10,7 +10,10 @@ module.exports = routerGroup({
   { 
     method: 'get',
     path: '/',
-    handlers: [authentication, getAll] 
+    handlers: [
+      authentication,
+      getAll
+    ] 
   },
   {
     method: 'get',
@@ -20,16 +23,29 @@ module.exports = routerGroup({
   { 
     method: 'post',
     path: '/',
-    handlers: [createOne] 
+    handlers: [
+      authentication,
+      isNotEmpty('email'),
+      isEmail('email'),
+      isNotEmpty('name'),
+      isNotEmpty('password'),
+      createOne
+    ] 
   },
   { 
     method: 'patch',
-    path: '/',
-    handlers: [patchOne] 
+    path: '/:id',
+    handlers: [
+      authentication,
+      patchOne
+    ] 
   },
   { 
     method: 'delete',
-    path: '/',
-    handlers: [deleteOne] 
+    path: '/:id',
+    handlers: [
+      authentication,
+      deleteOne
+    ] 
   },
 ]);
