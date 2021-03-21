@@ -10,11 +10,14 @@ const login = async (req, res, next) => {
     if(!user) {
       throw new HTTPException(400, "User not found");
     }
-    
+    const check = await bcrypt.compare(req.body.password, user.password);
+    if(!check) {
+      throw new HTTPException(400, "Email or password is incorrect");
+    }
     const token = jwt.sign(
       { id: user.id },
       process.env.JWT_SECRET, 
-      { expiresIn: process.env.JWT_EXPIRE, noTimestamp: true }
+      { expiresIn: parseInt(process.env.JWT_EXPIRE, 10), noTimestamp: true }
     );
     return res.json({
       status: "success",
@@ -31,9 +34,21 @@ const login = async (req, res, next) => {
 
 const register = async (req, res, next) => {
   try {
-    const hash = await bcrypt.hash(req.body.password, 10);
-    const id = await userService.createOne(req.body.email, req.body.name, hash);
+    const password = await bcrypt.hash(req.body.password, 10);
+    const id = await userService.createOne({
+      email: req.body.email,
+      name: req.body.name,
+      password,
+      role_id: 4,
+    });
+    const data = await userService.getOneById(id);
+    return res.json({
+      status: "success",
+      statusCode: 200,
+      data
+    });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
