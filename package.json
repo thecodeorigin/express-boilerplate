@@ -11,6 +11,9 @@
     "seed:make": "knex seed:make --knexfile src/config/knexfile.js",
     "seed:run": "knex seed:run --knexfile src/config/knexfile.js",
     "db:reset": "yarn migrate:rollback && yarn migrate:latest && yarn seed:run",
+    "eslint": "eslint",
+    "lint:check": "eslint --ext .js .",
+    "lint:fix": "eslint --fix --ext .js .",
     "test": "jest --coverage tests"
   },
   "dependencies": {
@@ -30,7 +33,13 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.6.3",
+    "prettier": "^2.2.1",
     "supertest": "^6.1.3"
   }
 }

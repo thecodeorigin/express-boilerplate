@@ -1,8 +1,8 @@
-const { UNEXPECTED_EXCEPTION } = require("../../constants/httpMessage");
+const { UNEXPECTED_EXCEPTION } = require('../../constants/httpMessage');
 
 class HTTPException extends Error {
   /**
-   * @param {*} statusCode : The error status code 
+   * @param {*} statusCode : The error status code
    * @param {*} message : The error message
    */
   constructor(statusCode, message) {
@@ -14,13 +14,13 @@ class HTTPException extends Error {
 
 const handleError = (err, res) => {
   // HTTP Exception
-  if(err.statusCode && err.message) {
+  if (err.statusCode && err.message) {
     return res.status(err.statusCode).json({
       status: err.statusCode === 400 ? 'fail' : 'error',
       statusCode: err.statusCode,
       message: err.message,
     });
-  } 
+  }
   // Database exception
   return res.status(500).json({
     status: 'error',
@@ -31,5 +31,5 @@ const handleError = (err, res) => {
 
 module.exports = {
   HTTPException,
-  handleError
-}
+  handleError,
+};

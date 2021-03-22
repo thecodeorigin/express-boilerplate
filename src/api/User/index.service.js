@@ -1,27 +1,16 @@
 const knex = require('../../config/connection');
 
-const getAll = () => {
-  return knex('users').select('*');
-};
+const getAll = () => knex('users').select('*');
 
-const getOneById = (id) => {
-  return knex('users').where({ id }).first('*');
-};
+const getOneById = (id) => knex('users').where({ id }).first('*');
 
-const createOne = async (payload) => {
-  return knex('users').insert(payload);
-};
+const createOne = async (payload) => knex('users').insert(payload);
 
-const patchOne = async (id, payload) => {
-  return knex('users').where({ id }).update(payload);
-};
+const patchOne = async (id, payload) =>
+  knex('users').where({ id }).update(payload);
 
-const deleteOne = async (id) => {
-  return knex('users').where({ id }).delete();
-};
-const getOneByEmail = (email) => {
-  return knex('users').where({ email }).first('*');
-}
+const deleteOne = async (id) => knex('users').where({ id }).delete();
+const getOneByEmail = (email) => knex('users').where({ email }).first('*');
 module.exports = {
   getAll,
   getOneById,
