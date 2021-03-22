@@ -20,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Router configuration
 router.forEach((route) => {
   if (app.get('env') !== 'test') {
-    // eslint-disable-next-line max-len
     console.log(
       `${chalk.green('✓')} ${chalk.bold.blue(
         route.method.toUpperCase()
@@ -56,5 +55,6 @@ const server = app.listen(app.get('port'), () => {
     console.log('Press CTRL-C to stop\n');
   }
 });
+
 // Export app instance
 module.exports = server;

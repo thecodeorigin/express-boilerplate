@@ -11,7 +11,9 @@ class HTTPException extends Error {
     this.message = message;
   }
 }
-
+/**
+ * @description This helper function is used to handle Exception inside ExpressJS application
+ */
 const handleError = (err, res) => {
   // HTTP Exception
   if (err.statusCode && err.message) {

@@ -7,6 +7,9 @@ const {
 } = require('../../constants/httpMessage');
 require('dotenv').config({ path: `${__dirname}/../../../.env` });
 
+/**
+ *  @description This is a middleware used for authenticating validation. Inject this in your routing configuration
+ */
 const authentication = async (req, res, next) => {
   try {
     const { token } = req.headers;
