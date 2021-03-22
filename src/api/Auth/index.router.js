@@ -1,6 +1,6 @@
+const { isNotEmpty, isEmail } = require('../../common/filters/validation');
 const { routerGroup } = require('../../common/helpers/routerGroup');
 const {register, login, getMe} = require('./index.controller');
-
 module.exports = routerGroup({
   name: 'auth',
   prefix: '/auth',
@@ -9,12 +9,23 @@ module.exports = routerGroup({
   { 
     method: 'post',
     path: '/register',
-    handlers: [register] 
+    handlers: [
+      isNotEmpty('email'),
+      isEmail('email'),
+      isNotEmpty('name'),
+      isNotEmpty('password'),
+      register
+    ] 
   },
   {
     method: 'post',
     path: '/login',
-    handlers: [login],
+    handlers: [
+      isNotEmpty('email'),
+      isEmail('email'),
+      isNotEmpty('password'),
+      login
+    ],
   },
   { 
     method: 'get',

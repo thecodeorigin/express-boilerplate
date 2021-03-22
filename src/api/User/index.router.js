@@ -30,13 +30,17 @@ module.exports = routerGroup({
       isNotEmpty('name'),
       isNotEmpty('password'),
       createOne
-    ] 
+    ],
   },
   { 
     method: 'patch',
     path: '/:id',
     handlers: [
       authentication,
+      isNotEmpty('email', true),
+      isEmail('email', true),
+      isNotEmpty('name', true),
+      isNotEmpty('password', true),
       patchOne
     ] 
   },

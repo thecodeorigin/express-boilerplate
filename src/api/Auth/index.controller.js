@@ -62,7 +62,13 @@ const getMe = async (req, res, next) => {
     if(!token) {
       throw new HTTPException(400, LOGIN_REQUIRED)
     }
-    return res.json(jwt.verify(token, process.env.JWT_SECRET)); 
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const data = await userService.getOneById(decoded.id);
+    return res.json({
+      status: "success",
+      statusCode: 200,
+      data,
+    }); 
   } catch (error) {
     if(error instanceof jwt.TokenExpiredError) {
       next(new HTTPException(400, LOGIN_REQUIRED));

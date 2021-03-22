@@ -1,7 +1,7 @@
 const { HTTPException } = require('../../common/helpers/errorHandler');
 const userService = require('./index.service');
+const bcrypt = require('bcrypt');
 const { USER_NOT_FOUND, EMAIL_EXISTS} = require('../../constants/httpMessage');
-
 const getAll = async (req, res, next) => {
   try {
     const users = await userService.getAll();
@@ -34,16 +34,19 @@ const getOne = async (req, res, next) => {
 
 const createOne = async (req, res, next) => {
   try {
-    const { email, name } = req.body;
+    let { email, name, password } = req.body;
     // Check if this email already exists
     const user = await userService.getOneByEmail(email);
     if(user) {
       throw new HTTPException(400, EMAIL_EXISTS);
     }
-    await userService.createOne(email, name);
+    password = await bcrypt.hash(password, 10);
+    const id = await userService.createOne({ email, name, password });
+    const data = await userService.getOneById(id);
     return res.status(201).json({
       status: 'success',
       statusCode: 201,
+      data,
     });
   } catch (err) {
     return next(err);
@@ -52,17 +55,18 @@ const createOne = async (req, res, next) => {
 
 const patchOne = async (req, res, next) => {
   try {
-    const { email, name } = req.body;
+    const { email, name, password } = req.body;
     const { id } = req.params;
     const user = await userService.getOneByEmail(email);
-    
     if(user && user.id != id) {
       throw new HTTPException(400, EMAIL_EXISTS);
     }
-    await userService.patchOne(id, email, name);
+    await userService.patchOne(id, { email, name, password });
+    const data = await userService.getOneById(id);
     return res.status(200).json({
       status: 'success',
       statusCode: 200,
+      data,
     });
   } catch(err) {
     return next(err);
