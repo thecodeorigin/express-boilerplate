@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "set NODE_ENV=production && node ./app.js",
+    "start": "export NODE_ENV=production && node ./app.js",
     "dev": "set NODE_ENV=development && nodemon ./app.js",
     "migrate:make": "knex migrate:make --knexfile src/config/knexfile.js",
     "migrate:latest": "knex migrate:latest --knexfile src/config/knexfile.js",
