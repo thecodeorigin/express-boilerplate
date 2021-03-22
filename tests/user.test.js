@@ -14,18 +14,20 @@ describe("/users endpoint", () => {
     expect(response.statusCode).toBe(400);
     done();
   });
-  test('GET /users should return 400 if user is not logged in', async (done) => {
-    const response = await request(server).get('/v1/users');
+  test('POST /users should return 400 if user is not logged in', async (done) => {
+    const response = await request(server).post('/v1/users');
     expect(response.statusCode).toBe(400);
     done();
   });
-  test('GET /users should return 400 if user is not logged in', async (done) => {
-    const response = await request(server).get('/v1/users');
+  test('PATCH /users should return 400 if user is not logged in', async (done) => {
+    const id = 1;
+    const response = await request(server).patch(`/v1/users/${id}`);
     expect(response.statusCode).toBe(400);
     done();
   });
-  test('GET /users should return 400 if user is not logged in', async (done) => {
-    const response = await request(server).get('/v1/users');
+  test('DELETE /users should return 400 if user is not logged in', async (done) => {
+    const id = 1;
+    const response = await request(server).delete(`/v1/users/${id}`);
     expect(response.statusCode).toBe(400);
     done();
   });

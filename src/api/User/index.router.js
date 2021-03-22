@@ -18,7 +18,10 @@ module.exports = routerGroup({
   {
     method: 'get',
     path: '/:id',
-    handlers: [getOne],
+    handlers: [
+      authentication,
+      getOne
+    ],
   },
   { 
     method: 'post',

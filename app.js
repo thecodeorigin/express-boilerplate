@@ -10,7 +10,8 @@ const { handleError } = require('./src/common/helpers/errorHandler');
 const app = express();
 require('dotenv').config();
 // ExpressJS middleware
-app.use(logger('dev'));
+if(app.get('env') != 'test')
+  app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
