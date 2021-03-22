@@ -51,11 +51,24 @@ $ yarn migrate:rollback
 ## Running the app
 
 ```bash
-# development
+# Running in development mode
 $ yarn dev
 
-# production mode
+# Running production mode on Linux-based OS
 $ yarn start
+
+# Running production mode on Window OS
+$ yarn start:window
+```
+
+## Testing the app (WIP)
+
+```bash
+# ESLint test
+$ yarn lint:check
+
+# ESLint test with fix
+$ yarn lint:fix
 ```
 
 ## Contributing
