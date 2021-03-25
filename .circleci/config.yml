@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: Deploy over SSH
-          command: ssh $USER@$IP "cd /home/express-mysql-boilerplate; git pull; yarn; pm2 restart api";
+          command: ssh $USER@$IP "cd /home/express-boilerplate; git pull; yarn; pm2 restart api";
 
 workflows:
   version: 2
