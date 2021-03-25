@@ -15,7 +15,6 @@ describe('/users endpoint', () => {
     done();
   });
   test('POST /users should return 400 if user is not logged in', async (done) => {
-    //
     const response = await request(server).post('/v1/users');
     expect(response.statusCode).toBe(400);
     done();
