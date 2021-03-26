@@ -1,5 +1,5 @@
 const faker = require('faker');
-const bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 
 exports.seed = function (knex) {
   return knex('users')
